@@ -9,34 +9,39 @@ export const api = axios.create({
 
 // Интерцептор запросов: добавляем Authorization заголовок
 api.interceptors.request.use(
-  (config) => {
-    const accessToken = localStorage.getItem('access_token');
-    if (accessToken) {
-      config.headers['Authorization'] = `Bearer ${accessToken}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
+    (config) => {
+      const accessToken = localStorage.getItem('access_token');
+      if (accessToken) {
+        config.headers['Authorization'] = `Bearer ${accessToken}`;
+      }
+      return config;
+    },
+    (error) => Promise.reject(error)
 );
 
 // Интерцептор ответа: обрабатываем 401 и редиректим
 api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      const redirectUrl = error.response.data?.redirect_url || '/auth';
-      console.log('Не авторизован. Редирект на:', redirectUrl);
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('refresh_token');
-      localStorage.removeItem('expires_at');
-      localStorage.removeItem('session_id');
-      window.location.href = redirectUrl;
+    (response) => response,
+    (error) => {
+      if (error.response?.status === 401) {
+        const currentUrl = window.location.href;
+        const redirectUrl = `/auth?redirect_uri=${encodeURIComponent(currentUrl)}`;
+        console.log('Не авторизован. Редирект на:', redirectUrl);
+
+        // Очищаем токены
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('expires_at');
+        localStorage.removeItem('session_id');
+
+        // Редиректим на страницу авторизации
+        window.location.href = redirectUrl;
+      }
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
-  }
 );
 
-// API функции (оставляем без изменений)
+// API функции
 export const getCourses = async () => {
   console.log(`getCourses: Отправляем GET-запрос на ${API_URL}/courses/`);
   try {
@@ -45,7 +50,7 @@ export const getCourses = async () => {
     return Array.isArray(response.data) ? response.data : [];
   } catch (err) {
     console.error('getCourses: Ошибка', err);
-    return [];
+    throw err;
   }
 };
 
