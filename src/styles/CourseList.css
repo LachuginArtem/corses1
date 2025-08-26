@@ -1,0 +1,27 @@
+.course-list {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  padding-left: 200px;
+  padding-right: 200px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.course-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+.no-courses{
+  color:black
+}
+
+
+@media (min-width: 768px) {
+  .course-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

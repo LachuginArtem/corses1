@@ -1,0 +1,64 @@
+.course-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 380px; /* 👈 фиксированная ширина */
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  color: #333;
+}
+
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.course-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.course-card p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.course-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.course-card-actions button {
+  background: linear-gradient(135deg, #110f8d, #3cb9f3);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.course-card-actions button.delete {
+  background: #ff4b4b;
+}
+
+.course-card-actions button.delete:hover {
+  background: #e03e3e;
+}
+.course-card {
+  width: 100%;
+  box-sizing: border-box;
+}

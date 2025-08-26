@@ -1,0 +1,58 @@
+.course-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.course-form h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.course-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.course-form input,
+.course-form textarea {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.course-form input:focus,
+.course-form textarea:focus {
+  border-color: #6e45e2;
+  outline: none;
+}
+
+.course-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.course-form button {
+  background: linear-gradient(135deg, #110f8d, #3cb9f3);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
